@@ -1,6 +1,6 @@
 {
   "querystring": "^0.2.0",
-  "react": "react@16.0.0-alpha.6",
+  "react": "16.0.0-alpha.6",
   "react-native": "^0.43.0",
   "react-native-router-flux": "^3.38.0",
   "react-redux": "^5.0.3",
