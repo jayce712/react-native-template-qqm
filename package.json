@@ -1,7 +1,7 @@
 {
   "name": "react-native-template-qqm",
   "version": "0.0.1",
-  "description": "reeact-native template of qqm",
+  "description": "react-native template for qqm",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
