@@ -1,0 +1,23 @@
+{
+  "name": "react-native-template-qqm",
+  "version": "0.0.1",
+  "description": "reeact-native template of qqm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lockie-cn/react-native-template-qqm.git"
+  },
+  "keywords": [
+    "react-native",
+    "template"
+  ],
+  "author": "Lockie-cn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lockie-cn/react-native-template-qqm/issues"
+  },
+  "homepage": "https://github.com/Lockie-cn/react-native-template-qqm#readme"
+}
