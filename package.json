@@ -1,6 +1,6 @@
 {
   "name": "react-native-template-qqm",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "react-native template for qqm",
   "main": "index.js",
   "scripts": {

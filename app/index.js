@@ -2,7 +2,7 @@
  * @Author: laijie
  * @Date: 2017-03-27 10:20:56
  * @Last Modified by: laijie
- * @Last Modified time: 2017-04-05 11:45:33
+ * @Last Modified time: 2017-04-07 12:59:25
  */
 import React, { Component } from 'react';
 import {
@@ -12,10 +12,11 @@ import {
   Platform
 } from 'react-native';
 import { connect, Provider } from 'react-redux';
-import { Router, Scene, Actions } from 'react-native-router-flux';
+// import { Router, Scene, Actions } from 'react-native-router-flux';
 import store from './store';
 import Home from './containers/index';
 
+/*
 const scenes = Actions.create(
   <Scene key="root">
     <Scene key="Home" component={Home} title={'Home'} />
@@ -23,10 +24,10 @@ const scenes = Actions.create(
 );
 
 const RouterWithRedux = connect()(Router);
+*/
 
 class App extends Component {
   render() {
-    console.log(StatusBar.currentHeight);
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
@@ -36,7 +37,8 @@ class App extends Component {
             showHideTransition={'fade'}
             barStyle={'dark-content'}
           />
-          <RouterWithRedux scenes={scenes} sceneStyle={styles.contianer} backAndroidHandler={() => { console.log('点击了android物理按键'); return true; }} />
+          <Home />
+          {/*<RouterWithRedux scenes={scenes} sceneStyle={styles.contianer} backAndroidHandler={() => { console.log('点击了android物理按键'); return true; }} />*/}
         </View>
       </Provider>
     );

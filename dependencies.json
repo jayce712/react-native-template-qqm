@@ -1,13 +1,10 @@
 {
-  "querystring": "^0.2.0",
-  "react": "^15.4.2",
-  "react-native": "^0.42.3",
-  "react-native-router-flux": "^3.38.0",
-  "react-redux": "^5.0.3",
-  "redux": "^3.6.0",
-  "redux-actions": "^2.0.1",
-  "redux-form": "^6.6.1",
-  "redux-logger": "^3.0.0",
-  "redux-persist": "^4.5.0",
-  "redux-saga": "^0.14.3"
+  "redux": "latest",
+  "react-redux": "latest",
+  "redux-saga": "latest",
+  "redux-actions": "latest",
+  "redux-form": "latest",
+  "redux-persist": "latest",
+  "redux-logger": "latest",
+  "querystring": "latest"
 }
