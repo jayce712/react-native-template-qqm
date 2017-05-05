@@ -2,50 +2,31 @@
  * @Author: laijie
  * @Date: 2017-03-27 11:24:40
  * @Last Modified by: laijie
- * @Last Modified time: 2017-03-28 17:12:30
+ * @Last Modified time: 2017-05-05 18:26:39
  */
+import { API_URL, PUB_API_URL } from '@app/config';
 import makeApi from './apiUtils';
-import { API_URL, PUB_API_URL } from '../config';
 
 const API_PATH = {
-  user: [{
-    path: 'register',
-    method: 'POST',
-  }, {
+  user: [
     path: 'login',
     method: 'POST',
-  }],
-  auth: [{
-    path: 'getUserAuthInfo',
-    method: 'POST',
-  }, {
-    path: 'authIdentityInfo',
-    method: 'POST',
-  }, {
-    path: 'uploadImage',
-    method: 'POST',
-  }],
+  }]
 };
 
 const PUB_API_PATH = {
-  fast: [{
-    path: 'userLimit',
-    method: 'POST',
-  },
-  {
-    path: 'ad',
-    method: 'POST',
-  }],
+  fast: [
+    {
+      path: 'ad',
+      method: 'POST',
+    }],
 };
 
 const OTHERS_PATH = [
   {
-    path: 'merchantList',
-    method: 'POST',
-  }, {
-    path: 'merchantInfo',
-    method: 'POST',
-  },
+    path: 'address',
+    method: 'GET',
+  }
 ];
 
 const api = makeApi(API_URL, 'api', API_PATH);
@@ -64,3 +45,4 @@ export {
   api,
   pubApi,
 };
+

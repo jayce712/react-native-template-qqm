@@ -6,5 +6,6 @@
   "redux-form": "latest",
   "redux-persist": "latest",
   "redux-logger": "latest",
-  "querystring": "latest"
+  "querystring": "latest",
+  "react-navigation": "latest"
 }

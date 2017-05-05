@@ -2,7 +2,7 @@
  * @Author: laijie
  * @Date: 2017-03-27 11:22:37
  * @Last Modified by: laijie
- * @Last Modified time: 2017-03-28 16:41:32
+ * @Last Modified time: 2017-05-05 18:27:01
  */
 import { createAction } from 'redux-actions';
 import { call, put, take } from 'redux-saga/effects';
@@ -32,7 +32,7 @@ function makeMethod(url: String, basePath: String, api: Object) {
       };
     } else {
       if (data) {
-        uri = `${url}?${querystring.stringify(data)}`;
+        uri = `${uri}?${querystring.stringify(data)}`;
       }
       opts = {
         method: 'GET',
@@ -77,6 +77,9 @@ function makeActionNames(basePath: String, path: String) {
  * @param {Object} actionNames
  * @returns
  */
+
+const ERR_STATUS = [-106];
+
 let index = 0;
 function makeEffect(request: Function, actionNames: Object) {
   return function* effect() {

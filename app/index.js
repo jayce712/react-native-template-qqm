@@ -2,60 +2,51 @@
  * @Author: laijie
  * @Date: 2017-03-27 10:20:56
  * @Last Modified by: laijie
- * @Last Modified time: 2017-04-07 12:59:25
+ * @Last Modified time: 2017-05-05 18:34:12
  */
 import React, { Component } from 'react';
 import {
   View,
-  StatusBar,
-  StyleSheet,
-  Platform
+  BackHandler
 } from 'react-native';
 import { connect, Provider } from 'react-redux';
-// import { Router, Scene, Actions } from 'react-native-router-flux';
+import { addNavigationHelpers } from 'react-navigation';
 import store from './store';
-import Home from './containers/index';
+import navigation from './utils/navigation';
+import AppNavigator from './navigator';
 
-/*
-const scenes = Actions.create(
-  <Scene key="root">
-    <Scene key="Home" component={Home} title={'Home'} />
-  </Scene>
-);
+@connect(state => ({ nav: state.nav }))
+class AppWithNavigationState extends Component {
 
-const RouterWithRedux = connect()(Router);
-*/
+  constructor(props) {
+    super(props);
+    this.backHandler = navigation.backAction;
+  }
 
-class App extends Component {
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.backHandler);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.backHandler);
+  }
+
   render() {
+    const { dispatch, nav } = this.props;
     return (
-      <Provider store={store}>
-        <View style={{ flex: 1 }}>
-          <StatusBar
-            translucent
-            backgroundColor={'transparent'}
-            showHideTransition={'fade'}
-            barStyle={'dark-content'}
-          />
-          <Home />
-          {/*<RouterWithRedux scenes={scenes} sceneStyle={styles.contianer} backAndroidHandler={() => { console.log('点击了android物理按键'); return true; }} />*/}
-        </View>
-      </Provider>
+      <AppNavigator navigation={addNavigationHelpers({ dispatch: dispatch, state: nav })} />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  contianer: {
-    ...Platform.select({
-      ios: {
-        marginTop: 64,
-      },
-      android: {
-        marginTop: 54,
-      },
-    }),
-  }
-});
+const App = () => {
+  return (
+    <Provider store={store}>
+      <View style={{ flex: 1 }}>
+        <AppWithNavigationState />
+      </View>
+    </Provider>
+  );
+};
 
 export default App;

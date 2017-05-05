@@ -2,7 +2,7 @@
  * @Author: laijie
  * @Date: 2017-03-13 15:44:02
  * @Last Modified by: laijie
- * @Last Modified time: 2017-03-28 16:47:00
+ * @Last Modified time: 2017-05-05 18:23:41
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -18,7 +18,7 @@ const middlewares = [sagaMiddleware];
 if (__DEV__) {
   middlewares.push(createLogger());
 } else {
-  //去掉console
+  //remove console
   global.console = {
     info: () => { },
     log: () => { },
