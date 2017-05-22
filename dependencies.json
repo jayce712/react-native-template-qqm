@@ -1,11 +1,9 @@
 {
   "redux": "latest",
   "react-redux": "latest",
+  "react-navigation": "latest",
   "redux-saga": "latest",
   "redux-actions": "latest",
-  "redux-form": "latest",
-  "redux-persist": "latest",
   "redux-logger": "latest",
-  "querystring": "latest",
-  "react-navigation": "latest"
+  "querystring": "latest"
 }

@@ -1,17 +1,15 @@
 /*
- * @Author: laijie
+ * @Author: Lockie
  * @Date: 2017-03-27 17:21:57
- * @Last Modified by: laijie
- * @Last Modified time: 2017-05-05 18:24:51
+ * @Last Modified by: Lockie
+ * @Last Modified time: 2017-05-22 17:06:07
  */
 
 import { combineReducers } from 'redux';
-import { reducer as form } from 'redux-form';
 import nav from './nav';
 import loading from './loading';
 
 const appReducer = combineReducers({
-  form,
   nav,
   loading,
 });

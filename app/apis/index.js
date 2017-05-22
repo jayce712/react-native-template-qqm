@@ -1,25 +1,28 @@
 /*
- * @Author: laijie
+ * @Author: Lockie
  * @Date: 2017-03-27 11:24:40
- * @Last Modified by: laijie
- * @Last Modified time: 2017-05-05 18:26:39
+ * @Last Modified by: Lockie
+ * @Last Modified time: 2017-05-22 17:33:34
  */
 import { API_URL, PUB_API_URL } from '@app/config';
 import makeApi from './apiUtils';
 
 const API_PATH = {
   user: [
-    path: 'login',
-    method: 'POST',
-  }]
+    {
+      path: 'login',
+      method: 'POST',
+    },
+  ]
 };
 
 const PUB_API_PATH = {
-  fast: [
+  test: [
     {
       path: 'ad',
       method: 'POST',
-    }],
+    },
+  ]
 };
 
 const OTHERS_PATH = [

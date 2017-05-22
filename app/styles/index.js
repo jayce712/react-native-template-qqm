@@ -1,27 +1,35 @@
 import {
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  Platform,
+  StatusBar
 } from 'react-native';
 
 const window = Dimensions.get('window');
 
-
+//size
 const width = window.width;
 const height = window.height;
+const statusBarHeight = Platform.OS === 'ios' ? 20 : Platform.Version > 19 ? StatusBar.currentHeight : 0;
 
-const color20 = '#202020';
+//color
+const fontColor = '#3C4455';
+const blue = '#0000FF';
 
+//styles
 const styles = StyleSheet.create({
-  font1: {
+  fontTheme: {
     fontSize: 15,
-    color: color20,
+    color: fontColor,
   }
 });
 
 export {
   width,
   height,
-  color20,
+  statusBarHeight,
+  fontColor,
+  blue,
 };
 
 export default styles;

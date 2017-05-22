@@ -1,14 +1,13 @@
 /*
- * @Author: laijie
+ * @Author: Lockie
  * @Date: 2017-03-13 15:44:02
- * @Last Modified by: laijie
- * @Last Modified time: 2017-05-05 18:23:41
+ * @Last Modified by: Lockie
+ * @Last Modified time: 2017-05-22 17:06:32
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
-import { autoRehydrate } from 'redux-persist';
 import rootReducer from './reducers';
 import sagas from './sagas';
 
@@ -28,7 +27,6 @@ if (__DEV__) {
 }
 
 const enhancer = compose(
-  autoRehydrate(),
   applyMiddleware(...middlewares),
   __DEV__ && window && window.devToolsExtension ? window.devToolsExtension() : f => f
 );

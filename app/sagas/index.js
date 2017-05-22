@@ -1,7 +1,7 @@
 /*
- * @Author: laijie
+ * @Author: Lockie
  * @Date: 2017-03-27 17:21:45
- * @Last Modified by: laijie
+ * @Last Modified by: Lockie
  * @Last Modified time: 2017-04-18 11:10:29
  */
 import { fork } from 'redux-saga/effects';

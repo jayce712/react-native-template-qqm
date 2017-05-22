@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { StatusBar, Platform } from 'react-native';
-import AppNavigator from '../navigator';
+import AppNavigator from '../AppNavigator';
 
 const initialNavState = {
   index: 0,

@@ -1,4 +1,4 @@
-import { ToastAndroid, Keyboard, BackHandler, Platform } from 'react-native';
+import { ToastAndroid, BackHandler, Platform } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import store from '@app/store';
 
@@ -9,7 +9,6 @@ const push = (routeName, params = {}, action) => {
     params: params,
     action: action
   });
-  Keyboard.dismiss(); //push新页面的时候隐藏键盘;
   dispatch(navigateAction);
 };
 
@@ -62,8 +61,13 @@ const reset = (routeName = 'homeIndex') => {
 };
 
 const setParams = (params = {}) => {
-  const { dispatch } = store;
-  const setParamsAction = NavigationActions.setParams(params);
+  const { dispatch, getState } = store;
+  const { routes, index } = getState().nav;
+  const payload = {
+    params: params,
+    key: routes[index].key
+  };
+  const setParamsAction = NavigationActions.setParams(payload);
   dispatch(setParamsAction);
 };
 

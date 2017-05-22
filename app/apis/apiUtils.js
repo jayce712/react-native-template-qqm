@@ -1,7 +1,7 @@
 /*
- * @Author: laijie
+ * @Author: Lockie
  * @Date: 2017-03-27 11:22:37
- * @Last Modified by: laijie
+ * @Last Modified by: Lockie
  * @Last Modified time: 2017-05-05 18:27:01
  */
 import { createAction } from 'redux-actions';
