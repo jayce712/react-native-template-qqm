@@ -3,8 +3,8 @@
 ### Usage
 
 ```
-  $ react-native init projectName --template qqm
-  $ cd projectName
+  $ react-native init MyApp --template qqm
+  $ cd MyApp
   $ react-native run-ios      //run on ios
   $ react-native run-anroid   //run on android
 ```
