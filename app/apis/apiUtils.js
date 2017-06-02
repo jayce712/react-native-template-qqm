@@ -1,8 +1,8 @@
 /*
  * @Author: Lockie
- * @Date: 2017-03-27 11:22:37
+ * @Date: 2017-03-27 11:24:40
  * @Last Modified by: Lockie
- * @Last Modified time: 2017-05-05 18:27:01
+ * @Last Modified time: 2017-06-02 17:34:57
  */
 import { createAction } from 'redux-actions';
 import { call, put, take } from 'redux-saga/effects';
@@ -11,16 +11,16 @@ import xFetch from './xFetch';
 
 /**
  * @param {String} url
- * @param {String} basePath
+ * @param {String} cat
  * @param {Object} api
  * @returns promise
  */
-function makeMethod(url: String, basePath: String, api: Object) {
+function makeMethod(url: String, cat: String, api: Object) {
   return async (data) => {
     let opts = {};
     let uri = '';
-    if (basePath) {
-      uri = `${url}${basePath}/${api.path}`;
+    if (cat) {
+      uri = `${url}${cat}/${api.path}`;
     } else {
       uri = url + api.path;
     }
@@ -93,6 +93,22 @@ function makeEffect(request: Function, actionNames: Object) {
         const response = yield call(request, req.payload);
         console.log('网络请求返回数据', response);
         //可以在这里对response做一些通用操作
+        if (response.status && response.status !== 0) {
+          if (response.status === -103) {
+            //重新登录
+            yield put(createAction('fetch/logout')());
+          } else if (ERR_STATUS.indexOf(response.status) < 0) {
+            //tip处理
+            yield put(createAction('TIP_ANIMATED')({ des: response.des }));
+          }
+        }
+        //用户信息刷新
+        if (response.version && response.version !== -1 && req.payload) {
+          const { token, userId } = req.payload;
+          if (token && userId) {
+            yield put(createAction('api/user/getUserInfo/request')({ token, userId, version: -1 }));
+          }
+        }
         yield put(createAction(actionNames.success)({
           req: req.payload || null,
           res: response,
@@ -123,33 +139,30 @@ function makeEffect(request: Function, actionNames: Object) {
 /**
  *
  * @param {String} url
- * @param {String} basePath api的前缀,'api' or 'pubApi'
- * @param {any} api Object or Array
+ * @param {String} actionPath api的前缀,'api' or 'pubApi'
+ * @param {Object} apiConfig
  */
-function makeApi(url: String, basePath: String, api: any) {
+function makeApi(url: String, actionPath: String, apiConfig: Object) {
   const apiActions = {};
   const sagas = [];
-  //判断api传进来的是Array还是Obejct
-  if (api instanceof Array) {
-    api.forEach((apiItem) => {
-      const path = apiItem.path;
-      const actionNames = makeActionNames(basePath || 'pubApi', path);
-      const request = makeMethod(url, null, apiItem);
-      const effect = makeEffect(request, actionNames);
-      apiActions[path] = createAction(actionNames.request);
-      sagas.push(effect);
-    });
-  } else {
-    for (let cat in api) {
+  for (let cat in apiConfig) {
+    if (apiConfig[cat].path === undefined) {
       apiActions[cat] = {};
-      api[cat].forEach((apiItem) => {
-        const path = apiItem.path;
-        const actionNames = makeActionNames(basePath || 'api', `${cat}/${path}`);
-        const request = makeMethod(url, cat, apiItem);
+      for (let path in apiConfig[cat]) {
+        const api = apiConfig[cat][path];
+        const actionNames = makeActionNames(actionPath || 'api', `${cat}/${path}`);
+        const request = makeMethod(url, cat, api);
         const effect = makeEffect(request, actionNames);
         apiActions[cat][path] = createAction(actionNames.request);
         sagas.push(effect);
-      });
+      }
+    } else {
+      const api = apiConfig[cat];
+      const actionNames = makeActionNames(actionPath || 'pubApi', cat);
+      const request = makeMethod(url, null, api);
+      const effect = makeEffect(request, actionNames);
+      apiActions[cat] = createAction(actionNames.request);
+      sagas.push(effect);
     }
   }
   return {

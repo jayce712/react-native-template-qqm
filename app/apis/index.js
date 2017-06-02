@@ -2,44 +2,39 @@
  * @Author: Lockie
  * @Date: 2017-03-27 11:24:40
  * @Last Modified by: Lockie
- * @Last Modified time: 2017-05-22 17:33:34
+ * @Last Modified time: 2017-06-02 17:35:44
  */
-import { API_URL, PUB_API_URL } from '@app/config';
+import config from '@app/config';
 import makeApi from './apiUtils';
 
 const API_PATH = {
-  user: [
-    {
+  user: {
+    register: {
+      path: 'register',
+      method: 'POST',
+    },
+    login: {
       path: 'login',
       method: 'POST',
     },
-  ]
-};
-
-const PUB_API_PATH = {
-  test: [
-    {
+  },
+  pub: {
+    ad: {
       path: 'ad',
       method: 'POST',
     },
-  ]
+  },
 };
 
-const OTHERS_PATH = [
-  {
+const PUB_API_PATH = {
+  address: {
     path: 'address',
     method: 'GET',
-  }
-];
+  },
+};
 
-const api = makeApi(API_URL, 'api', API_PATH);
-const _pubApi = makeApi(PUB_API_URL, 'pubApi', PUB_API_PATH);
-const _otherApi = makeApi(PUB_API_URL, 'pubApi', OTHERS_PATH);
-
-//合并apiActions和sagas
-const pubApi = {};
-pubApi.apiActions = Object.assign({}, _pubApi.apiActions, _otherApi.apiActions);
-pubApi.sagas = [].concat(_pubApi.sagas, _otherApi.sagas);
+const api = makeApi(config.API_URL, 'api', API_PATH);
+const pubApi = makeApi(config.PUB_API_URL, 'pubApi', PUB_API_PATH);
 
 console.log('api', api);
 console.log('pubApi', pubApi);
