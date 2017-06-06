@@ -1,8 +1,8 @@
 /*
  * @Author: Lockie
  * @Date: 2017-03-27 11:24:40
- * @Last Modified by: Lockie
- * @Last Modified time: 2017-06-02 17:34:57
+ * @Last Modified by: laijie
+ * @Last Modified time: 2017-06-06 18:20:49
  */
 import { createAction } from 'redux-actions';
 import { call, put, take } from 'redux-saga/effects';
@@ -93,22 +93,6 @@ function makeEffect(request: Function, actionNames: Object) {
         const response = yield call(request, req.payload);
         console.log('网络请求返回数据', response);
         //可以在这里对response做一些通用操作
-        if (response.status && response.status !== 0) {
-          if (response.status === -103) {
-            //重新登录
-            yield put(createAction('fetch/logout')());
-          } else if (ERR_STATUS.indexOf(response.status) < 0) {
-            //tip处理
-            yield put(createAction('TIP_ANIMATED')({ des: response.des }));
-          }
-        }
-        //用户信息刷新
-        if (response.version && response.version !== -1 && req.payload) {
-          const { token, userId } = req.payload;
-          if (token && userId) {
-            yield put(createAction('api/user/getUserInfo/request')({ token, userId, version: -1 }));
-          }
-        }
         yield put(createAction(actionNames.success)({
           req: req.payload || null,
           res: response,
