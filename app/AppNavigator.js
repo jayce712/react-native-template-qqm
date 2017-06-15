@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStackStyleInterpolator'; //动画使用react-navgation内部的动画
 import { navigation } from './utils';
 import { TitleButton } from './components';
 import { statusBarHeight } from './styles';
@@ -44,6 +45,7 @@ const AppNavigator = StackNavigator({
   {
     navigationOptions: {
       headerStyle: {
+        backgroundColor: '#51CEE0',
         ...Platform.select({
           android: {
             height: 44 + statusBarHeight,
@@ -65,6 +67,7 @@ const AppNavigator = StackNavigator({
     },
     headerBackTitle: null,
     headerMode: 'screen',
+    transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
   }
 );
 

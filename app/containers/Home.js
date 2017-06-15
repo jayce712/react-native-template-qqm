@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Button
+  View
 } from 'react-native';
 import { navigation } from '@app/utils';
+import { Button } from '@app/components';
 
 class Home extends Component {
 

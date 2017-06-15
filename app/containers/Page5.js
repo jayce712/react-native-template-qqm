@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   Button
 } from 'react-native';
 import { navigation } from '@app/utils';
+import { Button } from '@app/components';
 
 class Page5 extends Component {
 
