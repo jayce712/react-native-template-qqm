@@ -4,9 +4,9 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { blue } from '@app/styles';
+import { blue } from '../styles';
 
-function convertToRGBA(color: String, opacity: Number): String {
+function convertToRGBA(color, opacity) {
   let result = '';
   if (color.indexOf('#') === 0) {
     let _color = color.replace('#', '');

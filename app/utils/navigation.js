@@ -1,6 +1,6 @@
 import { ToastAndroid, BackHandler, Platform } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import store from '@app/store';
+import store from '../store';
 
 const push = (routeName, params = {}, action) => {
   const { dispatch } = store;
@@ -71,29 +71,29 @@ const setParams = (params = {}) => {
   dispatch(setParamsAction);
 };
 
-let cacheRouteName;
-let action;
 let timer;
 let backTwice = false;
+const backActions = {};
 
-//backAction只记录一次
-const backHandle = (fn: Function) => {
-  const { index, routes } = store.getState().nav;
-  cacheRouteName = routes[index].routeName;
-  action = fn;
+const backHandle = (action) => {
+  if (action instanceof Function) {
+    const { routeName } = store.getState().nav;
+    backActions[routeName] = action;
+  } else {
+    console.warn('参数必须为Function');
+  }
 };
 
 const backAction = () => {
-  const { index: currentIndex, routes } = store.getState().nav;
-  const currentRouteName = routes[currentIndex].routeName;
-  if (cacheRouteName === currentRouteName) {
-    if (action instanceof Function) {
-      console.info('____________ 自定义返回按键 ____________');
-      action();
+  const { routeName, index: currentIndex } = store.getState().nav;
+  if (currentIndex !== 0) {
+    if (backActions[routeName] instanceof Function) {
+      backActions[routeName]();
     } else {
       pop();
     }
-  } else if (currentIndex === 0 && Platform.OS === 'android') {
+    return true;
+  } else if (Platform.OS === 'android') {
     if (!backTwice) {
       ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
       backTwice = true;
@@ -107,10 +107,7 @@ const backAction = () => {
       BackHandler.exitApp();
       return false;
     }
-  } else {
-    pop();
   }
-  return true;
 };
 
 export default {

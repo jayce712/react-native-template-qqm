@@ -1,10 +1,10 @@
 /*
  * @Author: Lockie
  * @Date: 2017-03-27 11:24:40
- * @Last Modified by: Lockie
- * @Last Modified time: 2017-06-02 17:35:44
+ * @Last Modified by: laijie
+ * @Last Modified time: 2017-06-28 15:56:12
  */
-import config from '@app/config';
+import config from '../config';
 import makeApi from './apiUtils';
 
 const API_PATH = {

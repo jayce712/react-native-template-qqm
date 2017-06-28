@@ -1,8 +1,8 @@
 /*
  * @Author: Lockie
  * @Date: 2017-03-27 10:55:27
- * @Last Modified by: Lockie
- * @Last Modified time: 2017-05-22 17:08:51
+ * @Last Modified by: laijie
+ * @Last Modified time: 2017-06-28 15:54:33
  */
 
 function parseJSON(response) {
@@ -25,7 +25,7 @@ function checkStatus(response) {
  * @param {Object} options
  * @returns promise
  */
-function xFetch(url: String, options: Object) {
+function xFetch(url, options) {
   const opts = { ...options };
   opts.headers = {
     ...opts.headers,

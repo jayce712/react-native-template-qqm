@@ -15,18 +15,22 @@ const initialNavState = {
 export default handleActions({
   'Navigation/NAVIGATE': (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);
+    newState.routeName = newState.routes[newState.index].routeName;
     return newState;
   },
   'Navigation/BACK': (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);
+    newState.routeName = newState.routes[newState.index].routeName;
     return newState;
   },
   'Navigation/RESET': (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);
+    newState.routeName = newState.routes[newState.index].routeName;
     return newState;
   },
   'Navigation/SET_PARAMS': (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);
+    newState.routeName = newState.routes[newState.index].routeName;
     return newState;
   },
 }, initialNavState);

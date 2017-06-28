@@ -2,7 +2,7 @@
  * @Author: Lockie
  * @Date: 2017-03-27 11:24:40
  * @Last Modified by: laijie
- * @Last Modified time: 2017-06-06 18:20:49
+ * @Last Modified time: 2017-06-28 15:54:16
  */
 import { createAction } from 'redux-actions';
 import { call, put, take } from 'redux-saga/effects';
@@ -15,7 +15,7 @@ import xFetch from './xFetch';
  * @param {Object} api
  * @returns promise
  */
-function makeMethod(url: String, cat: String, api: Object) {
+function makeMethod(url, cat, api) {
   return async (data) => {
     let opts = {};
     let uri = '';
@@ -53,7 +53,7 @@ function makeMethod(url: String, cat: String, api: Object) {
  * @param {String} path
  * @returns object
  */
-function makeActionNames(basePath: String, path: String) {
+function makeActionNames(basePath, path) {
   return {
     request: `${basePath}/${path}/request`,
     success: `${basePath}/${path}/success`,
@@ -81,7 +81,7 @@ function makeActionNames(basePath: String, path: String) {
 const ERR_STATUS = [-106];
 
 let index = 0;
-function makeEffect(request: Function, actionNames: Object) {
+function makeEffect(request, actionNames) {
   return function* effect() {
     while (true) {
       const req = yield take(actionNames.request);
@@ -126,7 +126,7 @@ function makeEffect(request: Function, actionNames: Object) {
  * @param {String} actionPath api的前缀,'api' or 'pubApi'
  * @param {Object} apiConfig
  */
-function makeApi(url: String, actionPath: String, apiConfig: Object) {
+function makeApi(url, actionPath, apiConfig) {
   const apiActions = {};
   const sagas = [];
   for (let cat in apiConfig) {

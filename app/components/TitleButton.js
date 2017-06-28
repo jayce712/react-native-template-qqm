@@ -4,7 +4,7 @@ import {
   Text,
   Image
 } from 'react-native';
-import appStyles from '@app/styles';
+import appStyles from '../styles';
 
 const TitleButton = ({ style, onPress, text, textStyle, image, imageStyle }) => {
   return (

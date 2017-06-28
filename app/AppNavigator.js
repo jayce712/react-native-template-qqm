@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStackStyleInterpolator'; //动画使用react-navgation内部的动画
 import { navigation } from './utils';
@@ -55,17 +55,12 @@ const AppNavigator = StackNavigator({
       },
       headerBackTitle: null,
       headerLeft: <TitleButton image={back} onPress={navigation.backAction} />,
+      headerRight: <View />,
       headerTitleStyle: {
-        ...Platform.select({
-          android: {
-            alignSelf: 'center',
-            marginLeft: -24, //源码里面leftButton的宽度为24
-          },
-        }),
+        alignSelf: 'center',
       },
       gesturesEnabled: false,
     },
-    headerBackTitle: null,
     headerMode: 'screen',
     transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
   }
